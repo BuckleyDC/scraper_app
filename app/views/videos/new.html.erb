@@ -1,0 +1,31 @@
+<h1>Add a new video library to follow!</h1>
+
+<%= form_for @video, url: videos_path do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+    	<h2><%= pluralize(@video.errors.count, "error") %>
+    		prohibited this article from being saved: </h2>
+  	<ul>
+    	<% @video.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    	<% end %>
+  	</ul>
+  <% end %>
+    </div>
+  
+  <p>
+    <%= f.label :library %><br>
+    <%= f.text_field :library %>
+  </p>
+ 
+  <p>
+    <%= f.label :title %><br>
+    <%= f.text_area :title %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', welcome_index_path %>
