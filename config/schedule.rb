@@ -6,9 +6,11 @@
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
+set :environment, "development"
+set :output, {:error => "~/log/whenever.log", :standard => "~/log/whenever.log"}
 
 every '* * * * *' do
-	runner "Video.get_url"
+	rake "get_videos:get_all "
 end
 #
 # every 2.hours do
