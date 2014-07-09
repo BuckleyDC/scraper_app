@@ -4,7 +4,6 @@ class Video < ActiveRecord::Base
 	# attr_accessor :search_list, :url_pair, :div_element, :page
 
 	def self.get_url
-		
 	end
 
 
