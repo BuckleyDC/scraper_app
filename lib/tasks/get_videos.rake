@@ -1,4 +1,5 @@
 require 'open-uri'
+
 class Download
 
 	def initialize(short_link)
@@ -13,30 +14,34 @@ class Download
 end
 
 namespace :get_videos do
-  @url_pair = [nil,nil]
   desc "Pull stored video urls from db and do a youtube dump"
   task get_all: :environment do
   	@search_list = Video.all
-	@div_element = ""
-	@page = []
+
 	@search_list.each do |scan|
+		@div_element = ""
+		@page = []
 		@page = Nokogiri::HTML(open(scan.library))
 		@div_element = @page.css('div.yt-lockup-thumbnail a')[0]['href']
+		
+		p "working"
+
+		if scan.first_download != @div_element
+
+			latest_download = Video.find(scan.id)
+			latest_download.first_download = @div_element
+			latest_download.save
+			
+			x = Download.new(@div_element)
+			x.dl
+		else
+			p "Nothing to see here."
+		end
+		
+		puts Time.now
 	end
 
-	@url_pair.pop
-	@url_pair.unshift(@div_element)
-	p "working"
-
-	if @url_pair[0] != @url_pair[1]
-		x = Download.new(@url_pair[0])
-		x.dl
-	else
-		p "Nothing to see here."
-	end
-	puts "========================================================================================================="
-	p @url_pair
-	puts Time.now
+	
 
   end
 
