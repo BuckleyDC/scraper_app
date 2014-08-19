@@ -8,7 +8,7 @@ class Download
 
 	def dl
 		@short_link.each do |link|  #only need partial urls here
-			system("ruby-youtube-dl 'http://www.youtube.com#{link}'")
+			system("youtube-dl -o 'downloads/%(title)s' --no-playlist 'http://www.youtube.com#{link}'")
 		end
 	end
 end
