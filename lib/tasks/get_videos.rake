@@ -23,6 +23,7 @@ namespace :get_videos do
 		@page = []
 		@page = Nokogiri::HTML(open(scan.library))
 		@div_element = @page.css('div.yt-lockup-thumbnail a')[0]['href']
+		@account_title = 
 		
 		p "working"
 

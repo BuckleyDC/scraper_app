@@ -2,7 +2,7 @@
 
 <%= link_to 'Add Library', new_video_path %>
  
-<table>
+<table frame="box", border="1">
   <tr>
     <th>Title</th>
     <br></br>
@@ -14,7 +14,7 @@
       <td><%= movie.title %></td>
       <td><%= movie.library %></td>
       <td><%= link_to 'Show', video_path(movie) %></td>
-      <td><%= link_to 'Delete', video_path, method: :delete %></td>
+      <td><%= link_to 'Delete', video_path(movie), method: :delete %></td>
     </tr>
   <% end %>
 </table>
