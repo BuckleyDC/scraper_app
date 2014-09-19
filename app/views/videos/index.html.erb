@@ -23,7 +23,7 @@
               <%= link_to "#{movie.Name}","http://www.youtube.com" + movie.first_download %>
           <% end %>
       </td>
-      <td><%= movie.updated_at %></td>
+      <td><%= movie.updated_at[0..17] %></td>
       <td><%= button_to 'Show', video_path(movie), method: :get %></td>
       <td><%= button_to 'Delete', video_path(movie), method: :delete %></td>
     </tr>
