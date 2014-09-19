@@ -5,14 +5,22 @@
 <table frame="box", border="1">
   <tr>
     <th>Title</th>
-    <br></br>
+    <br>
     <th>Library Link</th>
+    <br>
+    <th>Most Recent Video Uploaded</th>
   </tr>
  
   <% @videos.each do |movie| %>
     <tr>
       <td><%= movie.title %></td>
       <td><%= movie.library %></td>
+      <td><% if movie.Name == nil %>
+              <%= "Wait" %>
+          <% else %>
+              <%= link_to "#{movie.Name}","http://www.youtube.com" + movie.first_download %>
+          <% end %>
+      </td>
       <td><%= button_to 'Show', video_path(movie), method: :get %></td>
       <td><%= button_to 'Delete', video_path(movie), method: :delete %></td>
     </tr>

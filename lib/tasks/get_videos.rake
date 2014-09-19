@@ -20,10 +20,13 @@ namespace :get_videos do
 
 	@search_list.each do |scan|
 		@div_element = ""
+		@name = []
 		@page = []
 		@page = Nokogiri::HTML(open(scan.library))
+		@title = []
+		@title = Nokogiri::HTML(open(scan.library))
 		@div_element = @page.css('div.yt-lockup-thumbnail a')[0]['href']
-		@account_title = 
+		@name = @title.css('div.yt-lockup-content h3')[0].text
 		
 		p "working"
 
@@ -31,6 +34,7 @@ namespace :get_videos do
 
 			latest_download = Video.find(scan.id)
 			latest_download.first_download = @div_element
+			latest_download.Name = @name
 			latest_download.save
 			
 			x = Download.new(@div_element)
