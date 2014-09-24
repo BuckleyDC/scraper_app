@@ -9,7 +9,7 @@
 set :environment, "development"
 set :output, {:error => "~/log/whenever.log", :standard => "~/log/whenever.log"}
 
-every '* * * * *' do
+every '5,10,15,20,25,30,35,40,45,50,55 * * * *' do
 	rake "get_videos:get_all "
 end
 #

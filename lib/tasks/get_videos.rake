@@ -8,7 +8,7 @@ class Download
 
 	def dl
 		@short_link.each do |link|  #only need partial urls here
-			system("/usr/local/bin/youtube-dl -o 'downloads/%(title)s' --no-playlist 'http://www.youtube.com#{link}'")
+			system("/usr/local/bin/youtube-dl -o '/dnc/data/videos/%(title)s' --no-playlist 'http://www.youtube.com#{link}'")
 		end
 	end
 end
@@ -28,13 +28,14 @@ namespace :get_videos do
 		@div_element = @page.css('div.yt-lockup-thumbnail a')[0]['href']
 		@name = @title.css('div.yt-lockup-content h3')[0].text
 		
-		p "working"
+		p "working #{@div_element}"
 
 		if scan.first_download != @div_element
 
 			latest_download = Video.find(scan.id)
 			latest_download.first_download = @div_element
 			latest_download.Name = @name
+			latest_download.moment = Time.now
 			latest_download.save
 			
 			x = Download.new(@div_element)
