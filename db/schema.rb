@@ -13,11 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140924212027) do
 
-  create_table "notifications", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "videos", force: true do |t|
     t.string   "library"
     t.string   "title"

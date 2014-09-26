@@ -19,7 +19,7 @@ class VideosController < ApplicationController
 	end
 
 	def index
-		@videos = Video.all
+		@videos = Video.all.order('moment DESC')
 	end
 
 	def destroy
